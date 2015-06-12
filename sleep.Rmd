@@ -1,9 +1,9 @@
 ---
 title: "Sleep Cycle Data"
 output:
-  pdf_document:
   html_document:
     theme: cerulean
+  pdf_document: null
 date: '`r format(Sys.Date(), "%B %e, %Y")`'
 ---
 
@@ -20,6 +20,13 @@ ggplot(sleep.steps, aes(x = Step.Range, y = Sleep.quality, fill = Sleep.quality)
     ylim(0,1)
 ```
 
+``` {R steps_quality_dots, echo = FALSE}
+ggplot(sleep, aes(x = Steps, y = Sleep.quality, color = Sleep.quality)) + geom_point() + 
+    stat_smooth(method = "lm", formula = y ~ x, size = 1) + 
+    theme(legend.position = "none") + 
+    labs(x = "Number of Steps", y = "Sleep Quality", title = "Sleep Quality by Number of Steps")
+```
+
 ``` {R day_quality, echo = FALSE}
 ggplot(sleep.day, aes(x = Day.of.week, y = Sleep.quality, fill = Sleep.quality)) +
     geom_bar(stat = "identity") + theme(legend.position = "none") + 
@@ -33,12 +40,6 @@ ggplot(sleep.time, aes(x = Day.of.week, y = Time.in.bed, fill = Time.in.bed)) +
     labs(x = "Day of Week", y = "Time in Bed", title = "Time in Bed by Day of Week")
 ```
 
-``` {R steps_quality_dots, echo = FALSE}
-ggplot(sleep, aes(x = Steps, y = Sleep.quality, color = Sleep.quality)) + geom_point() + 
-    stat_smooth(method = "lm", formula = y ~ x, size = 1) + 
-    theme(legend.position = "none") + 
-    labs(x = "Number of Steps", y = "Sleep Quality", title = "Sleep Quality by Number of Steps")
-```
 
 ``` {R steps_day, echo = FALSE}
 ggplot(sleep.steps.day, aes(x = Day.of.week, y = Steps, fill = Steps)) + 
