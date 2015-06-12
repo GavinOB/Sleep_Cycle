@@ -7,7 +7,7 @@ In RStudio, load the sleep.Rmd R Markdown file. Click the "Knit HTML" button to 
 
 Requires the R library "ggplot2". If necessary, install by running the R command `install.packages("ggplot2")` (only needs to be run once).
 
-### Project Files
+### File Descriptions
 
 * __sleep.R__ is the R script that loads and cleans the data from the "sleepdata.csv" file. It is called from the R Markdown file automatically.
 
