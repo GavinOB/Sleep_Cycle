@@ -1,46 +1,46 @@
 ---
 title: "Sleep Cycle Data"
-date: '`r format(Sys.Date(), "%B %e, %Y")`'
 output:
+  pdf_document:
   html_document:
-    toc: true
     theme: cerulean
+date: '`r format(Sys.Date(), "%B %e, %Y")`'
 ---
 
-``` {R load.data, echo = FALSE}
+``` {R load_data, echo = FALSE}
 source(file = "sleep.R")
 ```
 
 This dataset has `r nrow(sleep)` observations from `r format(min(sleep$Start), "%m/%d/%Y")` to `r format(max(sleep$Start), "%m/%d/%Y")`.
 
-``` {R steps.quality.bars, fig.width = 8, echo = FALSE}
+``` {R steps_quality_bars, fig.width = 8, echo = FALSE}
 ggplot(sleep.steps, aes(x = Step.Range, y = Sleep.quality, fill = Sleep.quality)) + 
     geom_bar(stat = "identity") + theme(legend.position = "none") +
     labs(x = "Number of Steps", y = "Sleep Quality", title = "Sleep Quality by Number of Steps") +
     ylim(0,1)
 ```
 
-``` {R day.quality, echo = FALSE}
+``` {R day_quality, echo = FALSE}
 ggplot(sleep.day, aes(x = Day.of.week, y = Sleep.quality, fill = Sleep.quality)) +
     geom_bar(stat = "identity") + theme(legend.position = "none") + 
     labs(x = "Day of Week", y = "Sleep Quality", title = "Sleep Quality by Day of Week") +
     ylim(0,1)
 ```
 
-``` {R time.day, echo = FALSE}
+``` {R time_day, echo = FALSE}
 ggplot(sleep.time, aes(x = Day.of.week, y = Time.in.bed, fill = Time.in.bed)) +
     geom_bar(stat = "identity") + theme(legend.position = "none") + 
     labs(x = "Day of Week", y = "Time in Bed", title = "Time in Bed by Day of Week")
 ```
 
-``` {R steps.quality.dots, echo = FALSE}
+``` {R steps_quality_dots, echo = FALSE}
 ggplot(sleep, aes(x = Steps, y = Sleep.quality, color = Sleep.quality)) + geom_point() + 
     stat_smooth(method = "lm", formula = y ~ x, size = 1) + 
     theme(legend.position = "none") + 
     labs(x = "Number of Steps", y = "Sleep Quality", title = "Sleep Quality by Number of Steps")
 ```
 
-``` {R steps.day, echo = FALSE}
+``` {R steps_day, echo = FALSE}
 ggplot(sleep.steps.day, aes(x = Day.of.week, y = Steps, fill = Steps)) + 
     geom_bar(stat = "identity") + 
     theme(legend.position = "none") + 
